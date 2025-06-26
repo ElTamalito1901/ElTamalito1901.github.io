@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Sazón App</title>
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+  <div class="decorative-element"></div>
+  <div class="decorative-element"></div>
+  
+  <div class="login-container">
+    <a href="../html/index.html" class="volver" title="Volver">←</a>
+    
+     <div class="logo">
+    <img src="../imagenes/LogoSazonApp.png" alt="Logo Empresa" class="logo-img">
+    </div>
+    
+    <h2>Bienvenido</h2>
+    
+    <form id="formLogin">
+  <div class="input-group">
+    <div class="input-icon">📧</div>
+    <input type="email" name="correo" placeholder="Correo electrónico" required />
+  </div>
+  
+  <div class="input-group">
+    <div class="input-icon">🔒</div>
+    <input type="password" name="clave" placeholder="Contraseña" required />
+  </div>
+  
+  <button type="submit" class="login-button">Iniciar Sesión</button>
+</form>
+    
+    <div class="registro-opcion">
+      ¿No tienes cuenta? <a href="../html/registro.html">Regístrate aquí</a>
+    </div>
+  </div>
+<script src="../js/scriptlogin.js"></script>
+</body>
+</html>

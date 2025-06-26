@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link rel="stylesheet" href="../css/perfil.css">
+</head>
+<body>
+    <div class="top-bar">
+        <button class="back-button" onclick="goBack()">
+            ←
+        </button>
+        <h1 class="page-title">Perfil</h1>
+    </div>
+
+    <div class="container">
+        <!-- Header con perfil -->
+        <div class="header">
+            <div class="profile-avatar">
+                <span id="avatar-text">👤</span>
+            </div>
+            <h2 class="profile-name" id="profile-name">Usuario</h2>
+            <p class="profile-email" id="profile-email">correo</p>
+        </div>
+
+        <!-- Datos del perfil -->
+        <div class="profile-data">
+            <div class="data-grid">
+                <div class="data-item" onclick="editField('phone')">
+                    <div class="edit-icon">✏️</div>
+                    <div class="data-icon phone-icon">📱</div>
+                    <div class="data-label">Teléfono</div>
+                    <div class="data-value" id="phone-value"></div>
+                </div>
+                
+                <div class="data-item" onclick="editField('birth')">
+                    <div class="edit-icon">✏️</div>
+                    <div class="data-icon birth-icon">🎂</div>
+                    <div class="data-label">Fecha de Nacimiento</div>
+                    <div class="data-value" id="birth-value"></div>
+                </div>
+                
+                <div class="data-item" onclick="editField('gender')">
+                    <div class="edit-icon">✏️</div>
+                    <div class="data-icon gender-icon">👤</div>
+                    <div class="data-label">Género</div>
+                    <div class="data-value" id="gender-value"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Ayuda y Soporte -->
+        <div class="support-section">
+            <div class="support-header">
+                <div class="support-icon">💬</div>
+                <h3 class="support-title">Ayuda y Soporte</h3>
+            </div>
+                <div class="support-item" onclick="contactSupport()">
+                    <div class="support-item-icon contact-icon">📞</div>
+                    <div class="support-item-content">
+                        <div class="support-item-title">Contactar soporte</div>
+                    </div>
+                    <div class="support-item-arrow">›</div>
+                </div>
+                
+                <div class="support-item" onclick="openConfiguration()">
+                    <div class="support-item-icon config-icon">⚙️</div>
+                    <div class="support-item-content">
+                        <div class="support-item-title">Configuración</div>
+                    </div>
+                    <div class="support-item-arrow">›</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de edición -->
+    <div class="edit-modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Editar Campo</h3>
+            </div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label class="form-label" id="fieldLabel">Campo</label>
+                    <input type="text" class="form-input" id="fieldInput" required>
+                </div>
+                <div class="modal-buttons">
+                    <button type="button" class="btn btn-cancel" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-save">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="../js/scriptperfil.js"></script>
+</body>
+</html>

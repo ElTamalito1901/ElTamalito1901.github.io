@@ -1,0 +1,716 @@
+/* HEADER FLEXIBLE Y ENVOLVENTE */
+header {
+  width: 100%;               /* Ocupa todo el ancho de la pantalla */
+  height: 100px;             /* Altura fija de 100 píxeles */
+  background: #fff;          /* Fondo blanco */
+  padding: 10px;             /* Espacio interno (dentro del header) */
+  display: flex;             /* Usa Flexbox para organizar el contenido */
+/*flex-wrap: wrap; */          /* Permite que los elementos bajen si no caben en una línea */
+  z-index: 5000;             /* Lo pone por encima de otros elementos (muy arriba en capas) */
+  align-items: center;       /* Centra verticalmente los elementos dentro del header */
+  justify-content: space-between; /* Espacio entre los elementos: uno a la izquierda, otro a la derecha */
+  gap: 10px;                 /* Espacio entre los elementos del header */
+  border-bottom: 2px solid #ccc; /* Línea gris debajo (borde inferior) */
+  position: fixed;           /* Hace que la barra esté siempre visible al hacer scroll */
+  overflow-x: visible;       /* Permite que lo que se desborde hacia los lados sea visible */
+}
+
+/* Cuerpo */
+body {
+  padding-top: 0px; /* el espacio que habra entre lo mas arriba de la pagina y el head */
+}
+
+/* ELEMENTOS DENTRO DEL HEADER */
+.logo,
+.carrito-btn,
+.usuario-boton,
+.open-btn {
+  flex-shrink: 0; /* sirve para evitar que un elemento se encoja*/
+}
+
+/* BOTÓN DE MENÚ */
+.open-btn {
+  width: 50px;
+  height: 50px;
+  cursor: pointer; /* Agregado: para que se vea como un botón al pasar el mouse */
+}
+
+.open-btn:hover {
+  transform: scale(1.1); /* Efecto de agrandarse un poquito */
+}
+
+/* LOGO */
+.logo {
+  width: 100px;  /* Altura del logo */
+  height: auto;  /* Anchura del logo */
+  cursor: pointer; /* Agregado: para que se vea como un botón al pasar el mouse */
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Efecto de agrandarse un poquito */
+}
+
+
+/* UBICACIÓN */
+/* el contenedor general*/ 
+.ubicacion-container {
+  position: relative; /* Es un contenedor padre */ 
+  display: flex;  /* Activa Flexbox: ahora los elementos hijos se pueden organizar de forma flexible. */
+  flex-direction: column; /*Coloca los elementos hijos uno debajo del otro (de arriba hacia abajo).*/
+  align-items: flex-start; /* Es para se alinie todo a la izquierda*/
+}
+
+/* configuracion del btn */
+.ubicacion-btn {
+  display: flex; /* para que exista el responsive */
+  align-items: center; /* Para centrar la imagen en su margen */
+  background: none; /* sin fondo */
+  border: none; /* sin bordes */
+  cursor: pointer; /* cicleable */
+  font-weight: bold; /* texto en negrita */
+  color: #fa6128; /* color */
+}
+
+
+ /* Modificacion de la imagen de la ubicacion */ 
+.ubicacion-btn img {
+  width: 40px; /* la imagen media 40px */
+}
+
+/* este es la modificacion de la palabra "ubicacion"- el span*/
+.ubicacion-btn span {
+  margin: 0 8px;    /* Se agrego un margen para la derecha e izquierda */ 
+  font-size: 16px;  /* tamaño de letra */
+}
+
+/* configuracion de las cajas del flexbox */
+.ubicacion-menu {
+  display: none; /* al dar click en alguna opcion se ocultara el menu de seleccion */
+  position: absolute; /* para que el menu se expanga teniendo en cuenta al position padre */
+  top: 100%; /* para que deje un margen del 100% para que se abra el menu */
+  left: 0;  /* se pega al borde izquierdo */
+  background: white; /* fondo blanco */
+  box-shadow: 0 8px 8px rgba(0,0,0,0.2); /* sombra hacia abajo de color negro */
+  border-radius: 6px; /* redondea las esquinas */
+  min-width: 160px; /* al realizar cualquier accion, no deberia achicarse en este caso la caja de flexbox*/
+  z-index: 4001; /*esto hace que las cajas esten encima de todo */
+}
+
+
+.ubicacion-menu a {
+  padding: 10px; /* Esta dejando 10px de espacio en todos los lados */
+  display: block; /* bloquea elementos para que se colocan al costado */
+  text-decoration: none; /* indica que no se desea colocar ningun decorativo a las opciones*/
+  color: #000; /* color */
+}
+
+/* acciona cuando el cursos pase encima del esta etiqueta */
+.ubicacion-menu a:hover {
+  background-color: #f1f1f1; /* al momento de pasar el curso por las opciones, sobresaldra el blanco */
+}
+
+/* === MODAL DE UBICACIÓN === */
+#modalUbicacion {
+  display: none;
+  position: fixed;
+  z-index: 1100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+#modalUbicacion .modal-contenido {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+#modalUbicacion h2 {
+  margin-top: 0;
+  color: #dd742e;
+  text-align: center;
+}
+
+#modalUbicacion label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+#modalUbicacion input,
+#modalUbicacion select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+#modalUbicacion button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #dd742e;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#modalUbicacion button[type="submit"]:hover {
+  background-color: #c85f1d;
+}
+
+.cerrar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+.cerrar-modal:hover {
+  color: #fa6128;
+}
+
+
+/* BUSCADOR RESPONSIVE */
+.busqueda-container {
+  flex: 1 1 150px; /* 1 = puede crecer; 1= puede encogerse y 300px = tamaño base */
+  max-width: 100%; /* No puede ser más ancho que el 100% del contenedor padre */
+  height: 40px;  /* declara la altura, en este caso es 40px */
+  position: relative; /* delcara la posicion relativa al padre */
+}
+
+.buscador {
+  width: 100%; /* el ancho usara el 100% */
+  height: 100%; /*la alta estara al 100% */
+  font-size: 16px; /* tamaño del texto */
+  padding: 0 50px; /* es el espacio, 0 tanto arriba y abajo; y 50px de espacio tanto a la derecha y a la izquierda*/
+  border-radius: 8px; /* borde */ 
+  border: 1px solid #ccc; /*propiedades del borde */
+}
+
+/* ICONOS DE BUSCADOR */
+.icono-izquierda,
+.icono-derecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+.icono-izquierda {
+  left: 10px;
+}
+
+.icono-derecha {
+  right: 10px;
+}
+
+
+/* USUARIO */
+.usuario-boton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.usuario-boton:hover {
+  transform: scale(1.1); /* Efecto de agrandarse un poquito */
+}
+
+.usuario-img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.usuario-texto {
+  font-size: 16px;
+  color: #333;
+}
+
+.usuario-container {
+  position: relative;
+  display: inline-block;
+}
+
+.usuario-menu {
+  position: absolute;
+  top: 100%;
+  right: -50px;
+  background-color: white; /* ← corregido aquí */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  min-width: 160px;
+  box-shadow: 0 8px 8px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+
+.usuario-menu a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.usuario-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+
+.demo-button {
+
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+        }
+
+
+.carrito-btn {
+width: 50px;
+height: 50px;
+object-fit: contain;
+border-radius: 50%;
+}
+
+.carrito-btn:hover {
+  transform: scale(1.1); /* Efecto de agrandarse un poquito */
+}
+
+/* Overlay */
+.overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 998;
+opacity: 0;
+visibility: hidden;
+transition: all 0.3s ease;
+}
+
+.overlay.active {
+opacity: 1;
+visibility: visible;
+}
+
+/* Sidebar */
+.cart-sidebar {
+position: fixed;
+top: 0;
+right: -400px;
+width: 400px;
+height: 100vh;
+background: white;
+z-index: 9999;
+transition: right 0.3s ease;
+display: flex;
+flex-direction: column;
+box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cart-sidebar.active {
+right: 0;
+}
+
+/* Header */
+.cart-header {
+padding: 20px;
+border-bottom: 1px solid #e0e0e0;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.cart-title {
+font-size: 24px;
+font-weight: bold;
+color: #333;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.cart-sidebar .close-btn {
+  color: #000; /* Negro visible */
+  background: none;
+  border: none;
+  font-size: 28px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1001; /* asegúrate que esté encima */
+}
+
+
+.close-btn:hover {
+color: #333;
+}
+
+/* Address */
+.delivery-address {
+padding: 15px 20px;
+background: #f8f8f8;
+border-bottom: 1px solid #e0e0e0;
+}
+
+.address-text {
+font-size: 14px;
+color: #666;
+display: flex;
+align-items: flex-start;
+gap: 8px;
+}
+
+.location-icon {
+width: 16px;
+height: 16px;
+fill: #ff6b35;
+margin-top: 2px;
+}
+
+/* Restaurant Info */
+.restaurant-info {
+padding: 20px;
+border-bottom: 1px solid #e0e0e0;
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.restaurant-logo {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background: #ff6b35;
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+font-weight: bold;
+font-size: 18px;
+}
+
+.restaurant-details h3 {
+font-size: 16px;
+font-weight: bold;
+color: #333;
+margin-bottom: 2px;
+}
+
+.restaurant-details p {
+font-size: 14px;
+color: #666;
+}
+
+.expand-btn {
+margin-left: auto;
+background: none;
+border: none;
+cursor: pointer;
+color: #666;
+font-size: 18px;
+}
+
+/* Cart Items */
+.cart-items {
+flex: 1;
+overflow-y: auto;
+padding: 20px;
+}
+
+.cart-item {
+display: flex;
+gap: 15px;
+margin-bottom: 20px;
+padding-bottom: 20px;
+border-bottom: 1px solid #f0f0f0;
+}
+
+.cart-item:last-child {
+border-bottom: none;
+margin-bottom: 0;
+}
+
+.item-image {
+width: 60px;
+height: 60px;
+border-radius: 8px;
+object-fit: cover;
+}
+
+.item-details {
+flex: 1;
+}
+
+.item-name {
+font-size: 16px;
+font-weight: 600;
+color: #333;
+margin-bottom: 8px;
+}
+
+.item-price {
+font-size: 16px;
+font-weight: bold;
+color: #333;
+margin-bottom: 10px;
+}
+
+.quantity-controls {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.quantity-btn {
+width: 32px;
+height: 32px;
+border: 1px solid #ddd;
+background: white;
+border-radius: 6px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+color: #666;
+}
+
+.quantity-btn:hover {
+background: #f5f5f5;
+}
+
+.quantity-btn.plus {
+background: #333;
+color: white;
+border-color: #333;
+}
+
+.quantity-btn.plus:hover {
+background: #555;
+}
+
+.quantity-display {
+font-size: 16px;
+font-weight: 600;
+color: #333;
+min-width: 20px;
+text-align: center;
+}
+
+/* Footer */
+.cart-footer {
+padding: 20px;
+border-top: 1px solid #e0e0e0;
+background: white;
+}
+
+.total-section {
+margin-bottom: 20px;
+}
+
+.total-text {
+font-size: 18px;
+font-weight: bold;
+color: #333;
+margin-bottom: 15px;
+}
+
+.checkout-btn {
+width: 100%;
+background: #00b894;
+color: white;
+border: none;
+padding: 16px;
+border-radius: 8px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+margin-bottom: 15px;
+}
+
+.checkout-btn:hover {
+background: #00a085;
+}
+
+.clear-cart-btn {
+width: 100%;
+background: none;
+border: none;
+color: #666;
+font-size: 14px;
+cursor: pointer;
+padding: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+}
+
+.clear-cart-btn:hover {
+color: #333;
+}
+
+.trash-icon {
+width: 16px;
+height: 16px;
+fill: currentColor;
+}
+
+@media (max-width: 480px) {
+.cart-sidebar {
+width: 100%;
+right: -100%;
+}
+}
+/* LÍNEA VERTICAL (opcional) */
+.linea-separadora {
+  display: none; /* puedes eliminar si no es esencial */
+}
+
+.sidebar {
+  position: fixed;       /* Se queda fija al hacer scroll */
+  top: 0;                /* Desde el borde superior */
+  left: 0;               /* Pegada al borde izquierdo */
+  height: 100vh;         /* Toda la altura visible de la ventana */
+  width: 0;          /* Ancho de la sidebar, ajústalo como gustes */
+  background-color: #b8561d;
+  overflow-y: auto;      /* Permite scroll si el contenido es largo */
+  transition: 0.3s;
+  padding-top: 20px;
+  z-index: 4000;
+  color: white;
+  transition: 0.3s ease;
+}
+
+.sidebar-header {
+  position: relative; /* importante para que el botón use este contenedor como referencia */
+  height: 60px; /* ajusta según el tamaño del logo */
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+
+.logo-sidebar {
+  height: 90px;
+  width: auto;
+  /* Si quieres que esté justo a la izquierda del botón sin moverse, puedes usar position: absolute también */
+}
+
+.sidebar-menu {
+  margin-top: 40px; /* Espacio entre el header y el menú */
+}
+
+
+.sidebar nav ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sidebar nav ul li a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #575757;
+}
+
+
+.sidebar-menu a {
+  padding: 6px 12px;
+  background-color: hsl(24, 76%, 52%);
+  color: #b8561d;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.1); /* Efecto de agrandarse un poquito */
+
+}
+
+
+hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+.close-btn:hover {
+  transform: scale(1.1); /* Efecto de agrandarse un poquito */
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3000;
+}
+
+/* Mostrar overlay */
+#overlay.active {
+  display: block;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.ocultar {
+  display: none !important;
+}
+

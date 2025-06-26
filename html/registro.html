@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Sazón App</title>
+  <link rel="stylesheet" href="../css/registro.css">
+</head>
+<body>
+  <div class="decorative-element"></div>
+  <div class="decorative-element"></div>
+  <div class="decorative-element"></div>
+  
+  <div class="registro-container">
+    <a href="login.html" class="volver" title="Volver">←</a>
+    
+    <div class="logo">
+    <img src="../imagenes/LogoSazonApp.png" alt="Logo Empresa" class="logo-img">
+    </div>
+    
+    <h2>Crear Cuenta</h2>
+    <div class="subtitle">Únete a la comunidad culinaria</div>
+    
+    <form action="procesar_registro.php" method="POST" id="registroForm">
+      <div class="input-group row">
+        <div>
+          <div class="input-icon">👤</div>
+          <input type="text" name="nombre" placeholder="Nombre" required />
+        </div>
+        <div>
+          <div class="input-icon">👤</div>
+          <input type="text" name="apellido" placeholder="Apellido" required />
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <div class="input-icon">📧</div>
+        <input type="email" name="correo" placeholder="Correo electrónico" required />
+      </div>
+      
+      <div class="input-group">
+        <div class="input-icon">📱</div>
+        <input type="tel" name="telefono" placeholder="Teléfono" required />
+      </div>
+      
+      <div class="input-group row">
+        <div>
+          <div class="input-icon">🎂</div>
+          <input type="date" name="fecha_nacimiento" required />
+        </div>
+        <div>
+          <div class="input-icon">⚧</div>
+          <select name="genero" required>
+            <option value="">Género</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+            <option value="prefiero_no_decir">Prefiero no decir</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <div class="input-icon">🔒</div>
+        <input type="password" name="clave" placeholder="Contraseña" required minlength="8" />
+      </div>
+      
+      <div class="input-group">
+        <div class="input-icon">🔒</div>
+        <input type="password" name="confirmar_clave" placeholder="Confirmar contraseña" required />
+      </div>
+      
+      <div class="checkbox-group">
+        <input type="checkbox" name="acepto_terminos" id="terminos" required />
+        <label for="terminos">
+          Acepto los <a href="terminos.html" target="_blank">términos y condiciones</a> 
+          y la <a href="privacidad.html" target="_blank">política de privacidad</a>
+        </label>
+      </div>
+      
+      <button type="submit" class="registro-button">Crear Cuenta</button>
+    </form>
+    
+    <div class="login-opcion">
+      ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
+    </div>
+  </div>
+  <script src="../js/registro.js"></script>
+</body>
+</html>

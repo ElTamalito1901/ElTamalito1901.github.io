@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sazón App</title>
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/cartarestaurante.css">
+</head>
+
+<body>
+  <header>
+   <!--Imagen de la barra menu--> 
+    <img src="../imagenes/menuboton.png" alt="Menú" class="open-btn" onclick="openMenu()">
+
+   <div id="overlay" onclick="closeSidebar()"></div>
+   
+   <!--Logo de la pagina-->
+    <a href="index.html">
+    <img src="../imagenes/LogoSazonApp.png" alt="Logo" class="logo">
+    </a>
+
+    <!--MENU DE LUGARES-->
+    <!-- Contenedor del menu de ubicacion -->
+<div class="ubicacion-container">
+  <div class="ubicacion-header">
+    <button onclick="abrirModalUbicacion()" class="ubicacion-btn">
+      <img src="../imagenes/ubicacion.png" alt="Ubicación"> 
+      <span id="ubicacion-actual">Ubicación</span> 
+      <img id="flecha" src="../imagenes/flechaabajo.png" alt="Flecha abajo" width="40">
+    </button>
+  </div>
+</div>
+
+<div id="modalUbicacion" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar-modal" onclick="cerrarModalUbicacion()">&times;</span>
+    <h2>Ingresa tu ubicación</h2>
+    <form id="formUbicacion">
+      <label>Distrito:</label>
+      <select id="distrito" required>
+        <option value="">Seleccionar</option>
+        <option value="Ancón">Ancón</option>
+        <option value="Ate">Ate</option>
+        <option value="Barranco">Barranco</option>
+        <option value="Breña">Breña</option>
+        <option value="Callao">Callao</option>
+        <option value="Carabayllo">Carabayllo</option>
+        <option value="Cercado de Lima">Cercado de Lima</option>
+        <option value="Chaclacayo">Chaclacayo</option>
+        <option value="Chorrillos">Chorrillos</option>
+        <option value="Cieneguilla">Cieneguilla</option>
+        <option value="Comas">Comas</option>
+        <option value="El Agustino">El Agustino</option>
+        <option value="Independencia">Independencia</option>
+        <option value="Jesús María">Jesús María</option>
+        <option value="La Molina">La Molina</option>
+        <option value="La Victoria">La Victoria</option>
+        <option value="Lince">Lince</option>
+        <option value="Los Olivos">Los Olivos</option>
+        <option value="Lurigancho">Lurigancho</option>
+        <option value="Lurín">Lurín</option>
+        <option value="Magdalena del Mar">Magdalena del Mar</option>
+        <option value="Miraflores">Miraflores</option>
+        <option value="Pachacámac">Pachacámac</option>
+        <option value="Pucusana">Pucusana</option>
+        <option value="Pueblo Libre">Pueblo Libre</option>
+        <option value="Puente Piedra">Puente Piedra</option>
+        <option value="Punta Hermosa">Punta Hermosa</option>
+        <option value="Punta Negra">Punta Negra</option>
+        <option value="Rímac">Rímac</option>
+        <option value="San Bartolo">San Bartolo</option>
+        <option value="San Borja">San Borja</option>
+        <option value="San Isidro">San Isidro</option>
+        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+        <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+        <option value="San Luis">San Luis</option>
+        <option value="San Martín de Porres">San Martín de Porres</option>
+        <option value="San Miguel">San Miguel</option>
+        <option value="Santa Anita">Santa Anita</option>
+        <option value="Santa María del Mar">Santa María del Mar</option>
+        <option value="Santa Rosa">Santa Rosa</option>
+        <option value="Santiago de Surco">Santiago de Surco</option>
+        <option value="Surquillo">Surquillo</option>
+        <option value="Villa El Salvador">Villa El Salvador</option>
+        <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+      </select>
+
+      <label>Urbanización:</label>
+      <input type="text" id="urbanizacion" required>
+
+      <label>Manzana:</label>
+      <input type="text" id="manzana" required>
+
+      <label>Número de calle:</label>
+      <input type="text" id="numeroCalle" required>
+
+      <label>Referencia (Opcional):</label>
+      <input type="text" id="referencia" placeholder="Ej. Frente al parque">
+
+      <button type="submit">Guardar ubicación</button>
+      <p id="mensajeExito" style="display: none; color: green; font-weight: bold; text-align: center; margin-top: 10px;">
+        ✅ Ubicación guardada correctamente
+      </p>
+    </form>
+  </div>
+</div>
+
+
+
+    <!--BARRA DE BUSQUEDA-->
+    <div class="busqueda-container">
+     <img src="../imagenes/platobarra.png" alt="Plato" class="icono-izquierda">
+     <input type="text" class="buscador" placeholder="Busca tu comida, postres o restaurantes favorito aqui...">
+     <img src="../imagenes/busqueda.png" alt="Buscar" class="icono-derecha">
+    </div>
+
+    <!--Imagen para ingresar al perfil-->
+    <div class="usuario-container" id="usuario-container">
+    <button class="usuario-boton" id="btnUsuario">
+    <img src="../imagenes/usuario.png" alt="Usuario" class="usuario-img">
+    <span id="usuario-nombre" class="usuario-texto">Ingreso</span>
+    </button>
+
+  <!-- Menú desplegable -->
+  <div class="usuario-menu" id="usuario-menu" style="display: none;">
+    <a href="../html/perfil.html">👤 Mi cuenta</a>
+    <a href="#">📦 Mis pedidos</a>
+    <a href="#" id="cerrarSesion">🚪 Cerrar sesión</a>
+  </div>
+</div>
+
+
+    <!--Imagen del carrito de compra-->
+    <button class="demo-button" onclick="toggleCart()">
+   <img src="../imagenes/carrito.png" class="carrito-btn" alt="carrito">
+    </button>
+
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-content">
+        <div class="cart-header">
+            <div class="cart-title">
+                <svg class="cart-icon" viewBox="0 0 24 24">
+                    <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+                TU CARRITO
+            </div>
+            <button class="close-btn" onclick="closeCart()">&times;</button>
+        </div>
+
+        <div class="delivery-address">
+            <div class="address-text">
+                <svg class="location-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                 <span id="ubicacion-sidecart">Ubicación</span>
+            </div>
+        </div>
+        <div class="restaurant-info">
+            <div class="restaurant-logo">P</div>
+            <div class="restaurant-details">
+                <h3></h3>
+            </div>
+            <button class="expand-btn">^</button>
+        </div>
+
+        <div class="cart-items">
+            <div class="cart-item">                         
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' fill='%23ffa500'/%3E%3Ctext x='30' y='35' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3E🍗🍟%3C/text%3E%3C/svg%3E" alt="Pollo a la brasa" class="item-image">
+                <div class="item-details">
+                    <div class="item-name"></div>
+                      <div class="item-price"></div>
+                        <div class="quantity-controls">
+                         <button class="quantity-btn minus" onclick="updateQuantity(-1)">-</button>
+                         <span class="quantity-display" id="quantity"></span>
+                         <button class="quantity-btn plus" onclick="updateQuantity(1)">+</button>
+                         <span style="margin-left: 10px; font-size: 14px; color: #666;">LIMIT +</span>                     
+                        </div>                    
+                      </div>
+                    </div>
+                  </div>
+           <div class="empty-cart-message" id="emptyCartMessage" style="display: none; text-align: center; padding: 20px;">
+           <button id="btnIrAComprar" class="checkout-btn" onclick="cerrarSidecart()">Ir a comprar</button>
+
+          </div>       
+
+        <div class="cart-footer">
+            <div class="total-section">
+                <div class="total-text" id="totalText"></div>
+            </div>
+            
+            <button class="checkout-btn" id="btnPagar" onclick="window.location.href='Pago.html'">
+            IR A PAGAR
+            </button>
+            
+            <button class="clear-cart-btn">
+                <svg class="trash-icon" viewBox="0 0 24 24">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+                Vaciar todo el carrito
+            </button>
+        </div>
+        </div>
+    </div>
+
+<div id="sidebar" class="sidebar">
+  <!-- Cabecera: logo + cerrar -->
+  <div class="sidebar-header">
+    <img src="../imagenes/logoinvertido.png" alt="Logo" class="logo-sidebar">
+    <button class="close-btn" onclick="closeSidebar()">×</button>
+  </div>
+
+  <!-- Menú -->
+  <nav class="sidebar-menu">
+    <ul>
+      <!-- Botones "Ingresar" y "Registrar" juntos -->
+      <li  id="opcionesNoLogueado" style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+        <a href="../html/login.html" id="btnIngresar">Ingresar</a>
+        <a href="../html/registro.html" id="btnRegistrar">Registrar</a>
+      </li>
+    </ul>
+
+    <!-- Línea separadora fuera del ul -->
+    <hr style="margin: 10px 20px; border-color: rgba(255,255,255,0.3);">
+
+    <ul>
+  <li><a href="../html/Dashboard.html">Dashboard</a></li>
+  <li id="opcionPerfil"><a href="../html/perfil.html">Perfil</a></li>
+  <li><a href="../html/configuracion.html">Configuración</a></li>
+</ul>
+  </nav>
+</div>
+  </header>
+
+  <main>
+    <div class="top-toolbar">
+     <a href="#" class="boton-volver" onclick="irAInicio()">← Volver</a>
+    </div>
+   <div class="container">
+            <aside class="sidebar-left">
+            <div class="restaurant">
+                <div class="restaurant-logo">P</div>
+                <h1 class="restaurant-name"></h1>
+                <p class="restaurant-type"></p>
+                <div class="rating">
+                    <div class="rating-score"></div>
+                    <div><div class="stars">★★★★☆</div><div>Calificacion</div></div>
+                </div>
+            </div>
+
+            <!-- Sección de reseñas en el sidebar izquierdo -->
+            <section class="reviews-section">
+                <div class="reviews-card">
+                    <div class="reviews-content">
+                        <div class="review-form">
+                            <h4>Dejar reseña</h4>
+                            <div class="review-input-container">
+                                <textarea class="review-input" placeholder="Escribe tu reseña aquí..."></textarea>
+                                <button class="review-submit">▶</button>
+                            </div>
+                        </div>
+                        
+                        <div class="reviews-list">
+                            <div class="review-item">
+                                <div class="review-avatar">U1</div>
+                                <div class="review-content">
+                                    <div class="review-name"></div>
+                                    <div class="review-date"></div>
+                                    <div class="review-text"></div>
+                                    <div class="review-actions">
+                                        <div class="review-action">❤</div>
+                                        <div class="review-action">💬</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="review-item">
+                                <div class="review-avatar">U2</div>
+                                <div class="review-content">
+                                    <div class="review-name"></div>
+                                    <div class="review-date"></div>
+                                    <div class="review-text"></div>
+                                    <div class="review-actions">
+                                        <div class="review-action">♡</div>
+                                        <div class="review-action">💬</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="review-item">
+                                <div class="review-avatar"></div>
+                                <div class="review-content">
+                                    <div class="review-name"></div>
+                                    <div class="review-date"></div>
+                                    <div class="review-text"></div>
+                                    <div class="review-actions">
+                                        <div class="review-action">♡</div>
+                                        <div class="review-action">💬</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        <div class="main-content">
+            <main class="menu">
+                <h2 class="menu-header">Menú de pollería DIEGO</h2>
+                <div class="menu-items"></div>
+                
+               
+            
+  </main>
+
+<a href="https://wa.me/+51922401362" target="_blank" class="whatsapp-float">
+  <img src="../imagenes/whatsapp.png" alt="WhatsApp" />
+</a>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/indesscript.js" defer></script>
+  <script src="../js/cartarestaurante.js" defer></script>
+  <footer>
+  <div class="footer-text">
+  © 2025 SazonAPP Inc. All rights reserved.
+</div>
+   </body>
+</html>

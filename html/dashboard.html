@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Carrit-compra</title>
+        <link rel="stylesheet" href="../css/dashboard.css">
+       
+    </head>
+
+<body>
+        <div class="header">
+        <button class="back-btn" onclick="goBack()">←</button>
+        <div class="header-title">Configuración</div>
+    </div>
+  </header>
+   <main>
+        <div id="dashboard">
+            <div class="chart-container">
+                <h2>Gastos por Tipo de Comida</h2>
+                <canvas id="bar-chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Gasto Mensual en Pedidos</h2>
+                <canvas id="line-chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Distribución de Gastos</h2>
+                <canvas id="pie-chart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Preferencias del Usuario</h2>
+                <canvas id="radar-chart"></canvas>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../js/scriptdashboard.js"></script>
+    </main>
+</body>
+</html>
+

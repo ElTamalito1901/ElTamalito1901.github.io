@@ -1,0 +1,597 @@
+@import url("reset.css");
+@import url("header.css");
+
+
+.Fraseeimagen {
+  display: flex;
+  align-items: center;      /* centra verticalmente */
+  width: 1500px; /* ajustá este valor a lo que necesites */
+  height: auto;
+  justify-content: flex-start; /* alinea a la izquierda */
+  gap: 20px; /* espacio entre texto e imagen */
+  margin-top: 100px;
+}
+
+/* Imagenes de las familiar */
+
+.slideshow {
+  position: relative;
+  width: 600px;
+  min-width: 600px;
+  max-width: 600px;
+  margin: 0; /* quita todos los márgenes */
+}
+
+.slideshow img {
+  width: 600px;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Flechas */
+.flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+}
+
+.flecha.izquierda {
+  left: 10px;
+  z-index: 998;
+}
+
+.flecha.derecha {
+  right: 10px;
+  z-index: 998;
+}
+
+.flecha:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#imagen-dinamica {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
+}
+
+/* Imagenes de las familiar - FIN */
+
+/* Texto al lado de la imaegen de las familiar - Inicio */
+
+.contenido-flex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 120px; /* espacio entre texto e imagen */
+  margin-left: 50px;
+  margin-top: 140px;
+  flex-wrap: wrap; /* para que en móviles se acomode en columna */
+}
+
+.texto-lateral {
+  max-width: 700px; /* Limite de pixceles del texto */
+  font-size: 40px; /* Tamaño del texto */
+  font-weight: 900;
+  color: #000000;
+}
+
+@media (max-width: 768px) {
+  .contenido-flex {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .texto-lateral {
+    max-width: 100%;
+    font-size: 20px;
+  }
+}
+
+/* Texto al lado de la imaegen de las familiar - FIN */
+
+/* Imagen pollo */
+.imagen-pollo img {
+ 
+  width: 150px;
+  height: auto;
+}
+
+/* Distancia imagen pollo y texto */
+.imagen-y-texto {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* espacio entre la imagen del pollo y el texto */
+}
+
+/* Palabra "Filtrar por: */
+.filtros h3 {
+  margin-left: 20px; /* Espacio entre la imagen y el margen izquierdo */
+  max-width: auto;  /* Limite de pixceles del texto */
+  font-size: 30px;   /* Tamaño del texto */
+  font-weight: 700;  /* Controla en ancho del text o */
+  margin-top: 50px; /* Ajusta este valor para bajarlo más o menos */
+  margin-bottom: 50px; /* Ajusar la distancia para abajo*/ 
+}
+
+.filtro-texto {
+  display: flex;
+  align-items: center; /* para alinear verticalmente el texto con la imagen */
+  gap: 15px; /* espacio entre icono y texto */
+}
+
+.filtros-titulo {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  gap: 10px; /* Espacio entre ícono y texto */
+}
+
+/* Icono filtro */
+.icono-filtro {
+
+  width: 50px;       /* tamaño del ícono */
+  height: auto;
+  vertical-align: middle;  /* que quede alineado con el texto */
+  margin-right: 8px;       /* espacio entre icono y texto */
+  cursor: pointer;
+}
+
+.fondo-icono-filtro {
+  display: inline-block;
+  background-color: #f0f0f0;  /* Color del fondo, cámbialo si deseas */
+  padding: 10px;              /* Espacio interno alrededor del ícono */
+  border-radius: 15px;        /* Hace las esquinas redondeadas */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra suave opcional */
+}
+
+.filtro-boton:hover {
+  background-color: #dd742e;
+}
+
+.filtro-boton {  
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 10px;
+}
+
+/* Filtro de estrellas*/
+
+.filtro-rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#numero-rating {
+  font-size: 24px;   /* Puedes ajustar el tamaño como desees */
+  font-weight: bold; /* Opcional: para hacerlo más grueso */
+  margin: 0 10px;    /* Espacio entre el número y los botones */
+  margin-left: 1px;
+  width: 10px;
+  margin-right: 15px;
+}
+
+.selector-numero button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+}
+
+.selector-numero span {
+  font-size: 18px;
+  margin: 0 10px;
+  min-width: 20px;
+  display: inline-block;
+  text-align: center;
+}
+
+.estrella-filtro {
+  width: 35px;     /* Ajusta este valor para hacerlo más pequeño o grande */
+  height: auto;
+  vertical-align: middle;
+  margin-left: 20px;
+  margin-top: auto;
+}
+
+/* Boton nuevas tiendas */
+
+.boton-nuevos {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0; /* Color suave */
+  border: none;
+  border-radius: 15px;
+  padding: 10px 16px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  gap: 10px; /* Espacio entre ícono y texto */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  margin-left: 50px;
+}
+
+.boton-nuevos:hover {
+  background-color: #dd742e;
+}
+
+.icono-tienda {
+  width: 30px;
+  height: auto;
+}
+
+
+/* Menu de todos los platillos - INICIO */
+.categorias-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.categorias-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px; /* más espacio entre botones */
+  padding: 15px 0;
+  scrollbar-width: none; /* Firefox */
+}
+
+.categorias-scroll::-webkit-scrollbar {
+  display: none; /* Chrome */
+}
+
+.boton-categoria {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 15px 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 20px;         /* tamaño del texto aumentado */
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.boton-categoria:hover {
+  background-color: #f2f2f2;
+}
+
+.icono-categoria {
+  width: 40px;  /* agrandar imagen */
+  height: auto;
+}
+
+.flecha-scroll {
+  background: none;
+  border: none;
+  font-size: 30px; /* flecha más grande */
+  cursor: pointer;
+  color: #dd742e;
+  padding-left: 10px;
+}
+
+/* Menu de todos los platillos - FIN */
+
+
+/*Ofreta en menu principal */
+
+.card-platillo-boton {
+  width: 300px;
+  background-color: white;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  margin: 30px auto;
+  text-align: center;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-platillo-boton:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.imagen-platillo {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #eee;
+}
+
+.info-platillo {
+  padding: 15px;
+}
+
+.nombre-platillo {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.restaurante-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.logo-restaurante {
+  width: 40px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.precio-platillo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #dd742e;
+}
+
+.rating-platillo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.estrella-icono {
+  width: 20px;
+  height: 20px;
+}
+
+.promedio {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.grid-platillos-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+  grid-template-rows: repeat(3, auto);   /* 3 filas automáticas */
+  gap: 30px 25px;  /* espacio vertical y horizontal */
+  
+  justify-content: center; /* centra horizontalmente el grid */
+  margin: 40px auto; /* para mover todo más a la derecha */
+  margin-top: 40px; /* espacio arriba */
+  max-width: 1400px; /* para limitar ancho y que se vea mejor */
+}
+
+.agregar-carrito-falso {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #dd742e; /* color como botón */
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer; /* para que no parezca clickeable */
+  user-select: none; /* evita que se seleccione como texto */
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/*Configuracion del texto Sazonapp*/
+.unete-sazonapp {
+  font-size: 48px;      /* Tamaño grande */
+  font-weight: 900;     /* Negrita */
+  color: #dd742e;       /* Color naranja (igual que el tema) */
+  text-align: center;   /* Centrar texto */
+  margin: 60px 0 40px;  /* Margen arriba y abajo */
+  font-family: 'Arial', sans-serif; /* Puedes cambiar la fuente */
+  cursor: pointer;
+}
+
+
+/* Fondo oscuro de modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Ocultar por defecto */
+.hidden {
+  display: none;
+}
+
+/* Contenedor del modal */
+.modal {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 400px;
+  width: 100%;
+  max-height: 90vh;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón para cerrar */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Logo del restaurante */
+.restaurant-logo {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 50px;
+  height: 50px;
+  z-index: 10;
+}
+
+.restaurant-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Imagen del platillo */
+.dish-image {
+  width: 100%;
+  height: 200px;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.dish-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Cuerpo del modal */
+.modal-body {
+  padding: 20px;
+}
+
+.dish-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.dish-description {
+  color: #666;
+  line-height: 1.4;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.dish-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.stars {
+  color: #ffa500;
+}
+
+/* Botón "Agregar al carrito" */
+.add-to-cart-btn {
+  width: 100%;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  background: #45a049;
+}
+
+.add-to-cart-btn:active {
+  background: #3d8b40;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .modal {
+    margin: 10px;
+    max-width: calc(100% - 20px);
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+}
+
+/* Copyrithe*/
+.footer-text {
+  font-size: 14px;
+  color: #777;
+  text-align: center;
+  margin: 40px 0 20px;
+  font-family: 'Arial', sans-serif;
+  user-select: none; /* para que no se seleccione fácilmente */
+}
+
+.btn-ver-todos {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff8c00;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+

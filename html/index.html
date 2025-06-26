@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sazón App</title>
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/index.css">
+  <link rel="stylesheet" href="../css/whatsapp.css">
+</head>
+
+<body>
+  <header>
+   <!--Imagen de la barra menu--> 
+    <img src="../imagenes/menuboton.png" alt="Menú" class="open-btn" onclick="openMenu()">
+
+   <div id="overlay" onclick="closeSidebar()"></div>
+   
+   <!--Logo de la pagina-->
+    <a href="index.html">
+    <img src="../imagenes/LogoSazonApp.png" alt="Logo" class="logo">
+    </a>
+
+    <!--MENU DE LUGARES-->
+    <!-- Contenedor del menu de ubicacion -->
+<div class="ubicacion-container">
+  <div class="ubicacion-header">
+    <button onclick="abrirModalUbicacion()" class="ubicacion-btn">
+      <img src="../imagenes/ubicacion.png" alt="Ubicación"> 
+      <span id="ubicacion-actual">Ubicación</span> 
+      <img id="flecha" src="../imagenes/flechaabajo.png" alt="Flecha abajo" width="40">
+    </button>
+  </div>
+</div>
+
+<div id="modalUbicacion" class="modalubi">
+  <div class="modal-contenido">
+    <span class="cerrar-modal" onclick="cerrarModalUbicacion()">&times;</span>
+    <h2>Ingresa tu ubicación</h2>
+    <form id="formUbicacion">
+      <label>Distrito:</label>
+      <select id="distrito" required>
+        <option value="">Seleccionar</option>
+        <option value="Ancón">Ancón</option>
+        <option value="Ate">Ate</option>
+        <option value="Barranco">Barranco</option>
+        <option value="Breña">Breña</option>
+        <option value="Callao">Callao</option>
+        <option value="Carabayllo">Carabayllo</option>
+        <option value="Cercado de Lima">Cercado de Lima</option>
+        <option value="Chaclacayo">Chaclacayo</option>
+        <option value="Chorrillos">Chorrillos</option>
+        <option value="Cieneguilla">Cieneguilla</option>
+        <option value="Comas">Comas</option>
+        <option value="El Agustino">El Agustino</option>
+        <option value="Independencia">Independencia</option>
+        <option value="Jesús María">Jesús María</option>
+        <option value="La Molina">La Molina</option>
+        <option value="La Victoria">La Victoria</option>
+        <option value="Lince">Lince</option>
+        <option value="Los Olivos">Los Olivos</option>
+        <option value="Lurigancho">Lurigancho</option>
+        <option value="Lurín">Lurín</option>
+        <option value="Magdalena del Mar">Magdalena del Mar</option>
+        <option value="Miraflores">Miraflores</option>
+        <option value="Pachacámac">Pachacámac</option>
+        <option value="Pucusana">Pucusana</option>
+        <option value="Pueblo Libre">Pueblo Libre</option>
+        <option value="Puente Piedra">Puente Piedra</option>
+        <option value="Punta Hermosa">Punta Hermosa</option>
+        <option value="Punta Negra">Punta Negra</option>
+        <option value="Rímac">Rímac</option>
+        <option value="San Bartolo">San Bartolo</option>
+        <option value="San Borja">San Borja</option>
+        <option value="San Isidro">San Isidro</option>
+        <option value="San Juan de Lurigancho">San Juan de Lurigancho</option>
+        <option value="San Juan de Miraflores">San Juan de Miraflores</option>
+        <option value="San Luis">San Luis</option>
+        <option value="San Martín de Porres">San Martín de Porres</option>
+        <option value="San Miguel">San Miguel</option>
+        <option value="Santa Anita">Santa Anita</option>
+        <option value="Santa María del Mar">Santa María del Mar</option>
+        <option value="Santa Rosa">Santa Rosa</option>
+        <option value="Santiago de Surco">Santiago de Surco</option>
+        <option value="Surquillo">Surquillo</option>
+        <option value="Villa El Salvador">Villa El Salvador</option>
+        <option value="Villa María del Triunfo">Villa María del Triunfo</option>
+      </select>
+
+      <label>Urbanización:</label>
+      <input type="text" id="urbanizacion" required>
+
+      <label>Manzana:</label>
+      <input type="text" id="manzana" required>
+
+      <label>Número de calle:</label>
+      <input type="text" id="numeroCalle" required>
+
+      <label>Referencia (Opcional):</label>
+      <input type="text" id="referencia" placeholder="Ej. Frente al parque">
+
+      <button type="submit">Guardar ubicación</button>
+      <p id="mensajeExito" style="display: none; color: green; font-weight: bold; text-align: center; margin-top: 10px;">
+        ✅ Ubicación guardada correctamente
+      </p>
+    </form>
+  </div>
+</div>
+
+
+
+    <!--BARRA DE BUSQUEDA-->
+    <div class="busqueda-container">
+     <img src="../imagenes/platobarra.png" alt="Plato" class="icono-izquierda">
+     <input type="text" class="buscador" placeholder="Busca tu comida, postres o restaurantes favorito aqui...">
+     <img src="../imagenes/busqueda.png" alt="Buscar" class="icono-derecha">
+    </div>
+
+    <!--Imagen para ingresar al perfil-->
+    <div class="usuario-container" id="usuario-container">
+    <button class="usuario-boton" id="btnUsuario">
+    <img src="../imagenes/usuario.png" alt="Usuario" class="usuario-img">
+    <span id="usuario-nombre" class="usuario-texto">Ingreso</span>
+    </button>
+
+  <!-- Menú desplegable -->
+  <div class="usuario-menu" id="usuario-menu" style="display: none;">
+    <a href="../html/perfil.html">👤 Mi cuenta</a>
+    <a href="#">📦 Mis pedidos</a>
+    <a href="#" id="cerrarSesion">🚪 Cerrar sesión</a>
+  </div>
+</div>
+
+
+    <!--Imagen del carrito de compra-->
+    <button class="demo-button" onclick="toggleCart()">
+   <img src="../imagenes/carrito.png" class="carrito-btn" alt="carrito">
+    </button>
+
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <div class="cart-title">
+                <svg class="cart-icon" viewBox="0 0 24 24">
+                    <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                </svg>
+                TU CARRITO
+            </div>
+            <button class="close-btn" onclick="closeCart()">&times;</button>
+        </div>
+
+        <div class="delivery-address">
+            <div class="address-text">
+                <svg class="location-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                 <span id="ubicacion-sidecart">Ubicación</span>
+            </div>
+        </div>
+        <div class="restaurant-info">
+            <div class="restaurant-logo">P</div>
+            <div class="restaurant-details">
+                <h3></h3>
+            </div>
+            <button class="expand-btn">^</button>
+        </div>
+
+        <div class="cart-items">
+            <div class="cart-item">                         
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' fill='%23ffa500'/%3E%3Ctext x='30' y='35' text-anchor='middle' fill='white' font-size='12' font-family='Arial'%3E🍗🍟%3C/text%3E%3C/svg%3E" alt="Pollo a la brasa" class="item-image">
+                <div class="item-details">
+                    <div class="item-name"></div>
+                      <div class="item-price"></div>
+                        <div class="quantity-controls">
+                         <button class="quantity-btn minus" onclick="updateQuantity(-1)">-</button>
+                         <span class="quantity-display" id="quantity"></span>
+                         <button class="quantity-btn plus" onclick="updateQuantity(1)">+</button>
+                         <span style="margin-left: 10px; font-size: 14px; color: #666;">LIMIT +</span>                     
+                        </div>                    
+                      </div>
+                    </div>
+                  </div>
+           <div class="empty-cart-message" id="emptyCartMessage" style="display: none; text-align: center; padding: 20px;">
+           <button id="btnIrAComprar" class="checkout-btn" onclick="window.location.href='Pago.html'">
+            IR A PAGAR  <!-- Esto es demostracion-->
+           </button>
+          </div>       
+
+        <div class="cart-footer">
+            <div class="total-section">
+                <div class="total-text" id="totalText"></div>
+            </div>
+            <button class="checkout-btn" id="btnPagar" onclick="window.location.href='Pago.html'">
+            IR A PAGAR
+            </button>
+            
+            <button class="clear-cart-btn">
+                <svg class="trash-icon" viewBox="0 0 24 24">
+                    <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                </svg>
+                Vaciar todo el carrito
+            </button>
+        </div>
+    </div>
+
+<div id="sidebar" class="sidebar">
+  <!-- Cabecera: logo + cerrar -->
+  <div class="sidebar-header">
+    <img src="../imagenes/logoinvertido.png" alt="Logo" class="logo-sidebar">
+    <button class="close-btn" onclick="closeSidebar()">×</button>
+  </div>
+
+  <!-- Menú -->
+  <nav class="sidebar-menu">
+    <ul>
+      <!-- Botones "Ingresar" y "Registrar" juntos -->
+      <li  id="opcionesNoLogueado" style="display: flex; gap: 10px; align-items: center; justify-content: center;">
+        <a href="../html/login.html" id="btnIngresar">Ingresar</a>
+        <a href="../html/registro.html" id="btnRegistrar">Registrar</a>
+      </li>
+    </ul>
+
+    <!-- Línea separadora fuera del ul -->
+    <hr style="margin: 10px 20px; border-color: rgba(255,255,255,0.3);">
+
+    <ul>
+  <li><a href="../html/Dashboard.html">Dashboard</a></li>
+  <li id="opcionPerfil"><a href="../html/perfil.html">Perfil</a></li>
+  <li><a href="../html/configuracion.html">Configuración</a></li>
+</ul>
+  </nav>
+</div>
+  </header>
+
+  <main>
+    <section class="contenido-flex">
+   <div class="imagen-y-texto">
+      <div class="imagen-pollo">
+       <img src="../imagenes/pollopollito.png" alt="Pollo Pollito">
+      </div>
+      <div class="texto-lateral">
+            <h2>¡DESCUBRE TU PRÓXIMO PLATO FAVORITO Y DISFRÚTALO EN FAMILIA!</h2>
+      </div>
+    </div>
+
+  <div class="slideshow">
+    <button class="flecha izquierda" onclick="cambiarImagen(-1)">&#10094;</button>
+    <img id="imagen-dinamica" src="../imagenes/imagen1.jpg" alt="imagen">
+    <button class="flecha derecha" onclick="cambiarImagen(1)">&#10095;</button>
+  </div>
+</section>
+
+<section class="filtros">
+  <div class="filtros-titulo">
+    <h3>Filtrar por:</h3>
+    <button class="filtro-boton fondo-icono-filtro" onclick="abrirFiltro()">
+      <img src="../imagenes/filtro.png" class="icono-filtro" alt="Icono filtro">     
+    </button>
+
+    <div class="filtro-rating">
+      <div class="selector-numero">
+        <img src="../imagenes/estrella.png" class= "estrella-filtro" alt ="estrella filtro">
+        <span id="numero-rating">5</span>
+        <button onclick="cambiarNumero(-0.5)">-</button>
+        <button onclick="cambiarNumero(0.5)">+</button>
+      </div>
+    </div>
+
+      <button id="btnVerTodos" class="btn-ver-todos">Ver todos</button>
+ <button class="boton-nuevos" onclick="window.location.href='../html/Nuevosrestaurantes.html';">
+  <img src="../imagenes/tienda.png" alt="Tienda" class="icono-tienda">
+  <span>¡Nuevos!</span>
+</button>
+
+
+  </div>
+
+<div class="categorias-wrapper">
+  <button class="flecha-scroll" onclick="scrollCategorias(-1)">◀</button>
+  <div class="categorias-scroll" id="categoriaScroll">
+    <button class="boton-categoria" data-categoria="sushi" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/sushi.png" alt="Sushi" class="icono-categoria">
+  <span>Sushi</span>
+</button>
+
+<button class="boton-categoria" data-categoria="pollería" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/polleria.png" alt="Pollería" class="icono-categoria">
+  <span>Pollería</span>
+</button>
+
+<button class="boton-categoria" data-categoria="carnes" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/carnes.png" alt="Carnes" class="icono-categoria">
+  <span>Carnes</span>
+</button>
+
+<button class="boton-categoria" data-categoria="sándwiches" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/sandwich.png" alt="Sándwiches" class="icono-categoria">
+  <span>Sándwiches</span>
+</button>
+
+<button class="boton-categoria" data-categoria="bebidas" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/botella.png" alt="Bebidas" class="icono-categoria">
+  <span>Bebidas</span>
+</button>
+
+<button class="boton-categoria" data-categoria="pizzas" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/pizzas.png" alt="Pizzas" class="icono-categoria">
+  <span>Pizzas</span>
+</button>
+
+<button class="boton-categoria" data-categoria="postres" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/postres.png" alt="Postres" class="icono-categoria">
+  <span>Postres</span>
+</button>
+
+<button class="boton-categoria" data-categoria="tacos" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/tacos.png" alt="Tacos" class="icono-categoria">
+  <span>Tacos</span>
+</button>
+
+<button class="boton-categoria" data-categoria="ensaladas" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/ensaladas.png" alt="Ensaladas" class="icono-categoria">
+  <span>Ensaladas</span>
+</button>
+
+<button class="boton-categoria" data-categoria="helados" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/helados.png" alt="Helados" class="icono-categoria">
+  <span>Helados</span>
+</button>
+
+<button class="boton-categoria" data-categoria="mariscos" onclick="irAMenuTienda(this)">
+  <img src="../imagenes/mariscos.png" alt="Mariscos" class="icono-categoria">
+  <span>Mariscos</span>
+</button>
+  </div>
+  <button class="flecha-scroll" onclick="scrollCategorias(1)">▶</button>
+</div>
+
+
+<div class="grid-platillos-container">
+
+    <!-- Empresa 1 -->
+<!-- Tu tarjeta de platillo -->
+<!-- Tarjeta Rockys -->
+<button class="card-platillo-boton" id="btnPolloFamiliar">
+  <img src="../imagenes/polloalabrasa1.jpeg" alt="1 Pollo familiar" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">1 pollo a la brasa + papas + ensalada + gaseosa de 1.5L</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/rockys.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/69.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">5.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal Rockys -->
+<div class="modal-overlay hidden" id="modalRockys">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalRockys').classList.add('hidden')">&times;</button>
+    <a href="#" id="logoRockysLink">
+  <img src="../imagenes/rockys.png" alt="Logo Restaurante" class="logo-restaurante">
+</a>
+    <div class="dish-image">
+      <img src="../imagenes/polloalabrasa1.jpeg" alt="Pollo a la brasa">
+    </div>
+    <div class="modal-body">
+      <h2 class="dish-name">Pollo familiar + ensalada</h2>
+      <p class="dish-description">Delicioso pollo al horno con ensalada fresca. Porciones para toda la familia.</p>
+      <div class="dish-price">Precio: S/69.90</div>
+      <div class="rating"><span class="stars">★★★★★</span> <span>Calificación: 5.0 estrellas</span></div>
+      <button onclick="agregarAlCarrito()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 2 - Platillo -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalChaufa').classList.remove('hidden')">
+  <img src="../imagenes/chaufa1.JPG" alt="Chaufa" class="imagen-platillo">
+
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">1 porción de Chaufa de pollo</h2>
+
+    <div class="restaurante-info">
+      <img src="../imagenes/logoempresa2.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal Empresa 2 - Chaufa -->
+<div class="modal-overlay hidden" id="modalChaufa">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalChaufa').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoChaufaLink">
+      <img src="../imagenes/logoempresa2.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/chaufa1.JPG" alt="Chaufa de pollo">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">1 porción de Chaufa de pollo</h2>
+      <p class="dish-description">Arroz chaufa con pollo, salteado al wok con cebolla china y salsa de soya.</p>
+      <div class="dish-price" id="precioChaufa">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoChaufa()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 3 - Platillo -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalAeropuerto').classList.remove('hidden')">
+  <img src="../imagenes/aeropuertochifa1.jpeg" alt="Aeropuerto" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Aeropuerto de pollo + gaseosa</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/logoempresa3.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/35.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal Empresa 3 - Aeropuerto -->
+<div class="modal-overlay hidden" id="modalAeropuerto">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalAeropuerto').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoAeropuertoLink">
+      <img src="../imagenes/logoempresa3.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/aeropuertochifa1.jpeg" alt="Aeropuerto de pollo">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Aeropuerto de pollo + gaseosa</h2>
+      <p class="dish-description">Un contundente arroz aeropuerto con pollo y fideos salteados, acompañado de una bebida gaseosa.</p>
+      <div class="dish-price" id="precioAeropuerto">Precio: S/35.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoAeropuerto()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 4 - Platillo -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalPolloCuarto').classList.remove('hidden')">
+  <img src="../imagenes/pollocuarto.jpg" alt="1/4 de pollo" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">1/4 de pollo</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/polleriadiego.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal Empresa 4 - 1/4 de Pollo -->
+<div class="modal-overlay hidden" id="modalPolloCuarto">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalPolloCuarto').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoPolloCuartoLink">
+      <img src="../imagenes/polleriadiego.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/pollocuarto.jpg" alt="1/4 de pollo">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">1/4 de pollo</h2>
+      <p class="dish-description">Jugoso cuarto de pollo al carbón acompañado de papas fritas y ensalada fresca.</p>
+      <div class="dish-price" id="precioPolloCuarto">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoPolloCuarto()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Platillo - Chifacay -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalChifacay').classList.remove('hidden')">
+  <img src="../imagenes/chifacay.webp" alt="Chifacay" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Chifacay</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/chifacentral.jpg" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal Empresa 5 - Chifacay -->
+<!-- Modal - Chifacay -->
+<div class="modal-overlay hidden" id="modalChifacay">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalChifacay').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoChifacayLink">
+      <img src="../imagenes/chifacentral.jpg" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/chifacay.webp" alt="Chifacay">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Chifacay</h2>
+      <p class="dish-description">Plato especial de la casa: arroz chaufa con una deliciosa salsa secreta y acompañamientos únicos.</p>
+      <div class="dish-price" id="precioChifacay">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoChifacay()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- Platillo - Chicharrón de Pescado -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalChicharronPescado').classList.remove('hidden')">
+  <img src="../imagenes/chicharrondepescado.jpg" alt="Chicharrón de Pescado" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Chicharrón de Pescado</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/elangelo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Chicharrón de Pescado -->
+<div class="modal-overlay hidden" id="modalChicharronPescado">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalChicharronPescado').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoChicharronPescadoLink">
+      <img src="../imagenes/elangelo.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/chicharrondepescado.jpg" alt="Chicharrón de Pescado">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Chicharrón de Pescado</h2>
+      <p class="dish-description">Crujiente chicharrón de pescado acompañado de yucas fritas, zarza criolla y crema tártara.</p>
+      <div class="dish-price" id="precioChicharronPescado">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoChicharronPescado()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Platillo - Makis Especiales -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalMakis').classList.remove('hidden')">
+  <img src="../imagenes/makis.jpeg" alt="Makis" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Makis Especiales</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/rolldediego.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Makis Especiales -->
+<div class="modal-overlay hidden" id="modalMakis">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalMakis').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoMakisLink">
+      <img src="../imagenes/rolldediego.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/makis.jpeg" alt="Makis Especiales">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Makis Especiales</h2>
+      <p class="dish-description">Makis de la casa con rellenos frescos y toques peruanos. Incluye 10 piezas.</p>
+      <div class="dish-price" id="precioMakis">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoMakis()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Platillo - Parrilla de Carne -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalParrillaCarne').classList.remove('hidden')">
+  <img src="../imagenes/parrilla carne.webp" alt="Parrilla" class="imagen-platillo">
+  
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Parrilla de Carne</h2>
+    
+    <div class="restaurante-info">
+      <img src="../imagenes/polleriadonpollo.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+    
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Parrilla de Carne -->
+<div class="modal-overlay hidden" id="modalParrillaCarne">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalParrillaCarne').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoParrillaCarneLink">
+      <img src="../imagenes/polleriadonpollo.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/parrilla carne.webp" alt="Parrilla de Carne">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Parrilla de Carne</h2>
+      <p class="dish-description">Parrilla variada con carne de res, chorizo y acompañamientos típicos peruanos.</p>
+      <div class="dish-price" id="precioParrillaCarne">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoParrillaCarne()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+  <!-- Empresa 9 -->
+<!-- Platillo - Pizza Familiar -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalPizzaFamiliar').classList.remove('hidden')">
+  <img src="../imagenes/pizza.webp" alt="Pizza Familiar" class="imagen-platillo">
+
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Pizza Familiar</h2>
+
+    <div class="restaurante-info">
+      <img src="../imagenes/pizzalogo.jpg" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Pizza Familiar -->
+<div class="modal-overlay hidden" id="modalPizzaFamiliar">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalPizzaFamiliar').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoPizzaFamiliarLink">
+      <img src="../imagenes/pizzalogo.jpg" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/pizza.webp" alt="Pizza Familiar">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Pizza Familiar</h2>
+      <p class="dish-description">Pizza grande con ingredientes a elección: jamón, champiñones, pepperoni, aceitunas, entre otros.</p>
+      <div class="dish-price" id="precioPizzaFamiliar">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoPizzaFamiliar()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Platillo - Helado -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalHelado').classList.remove('hidden')">
+  <img src="../imagenes/postrehelad.jpg" alt="Helado" class="imagen-platillo">
+
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Helado</h2>
+
+    <div class="restaurante-info">
+      <img src="../imagenes/postrerialogo.webp" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Helado -->
+<div class="modal-overlay hidden" id="modalHelado">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalHelado').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoHeladoLink">
+      <img src="../imagenes/postrerialogo.webp" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/postrehelad.jpg" alt="Helado">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Helado</h2>
+      <p class="dish-description">Postre helado artesanal con sabores surtidos: vainilla, chocolate, fresa y más.</p>
+      <div class="dish-price" id="precioHelado">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★☆☆</span> <span>Calificación: 3.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoHelado()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Platillo - Tacos -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalTacos').classList.remove('hidden')">
+  <img src="../imagenes/tacos.jpeg" alt="Tacos" class="imagen-platillo">
+
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Tacos</h2>
+
+    <div class="restaurante-info">
+      <img src="../imagenes/chillislogo.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">3.5</span>
+    </div>
+
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Tacos -->
+<div class="modal-overlay hidden" id="modalTacos">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalTacos').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoTacosLink">
+      <img src="../imagenes/chillislogo.jpeg" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/tacos.jpeg" alt="Tacos">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Tacos</h2>
+      <p class="dish-description">Deliciosos tacos mexicanos rellenos de carne, vegetales frescos y salsas artesanales.</p>
+      <div class="dish-price" id="precioTacos">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★☆☆</span> <span>Calificación: 3.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoTacos()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Platillo - Ensalada -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalEnsalada').classList.remove('hidden')">
+  <img src="../imagenes/ensalada.jpeg" alt="Ensalada" class="imagen-platillo">
+
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ensalada</h2>
+
+    <div class="restaurante-info">
+      <img src="../imagenes/ensaladareialogo.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/25.90</span>
+    </div>
+
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" alt="Estrella" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+    
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Ensalada -->
+<div class="modal-overlay hidden" id="modalEnsalada">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalEnsalada').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoEnsaladaLink">
+      <img src="../imagenes/ensaladareialogo.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/ensalada.jpeg" alt="Ensalada">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Ensalada</h2>
+      <p class="dish-description">Ensalada fresca con vegetales orgánicos, vinagreta de la casa y opción de pollo o atún.</p>
+      <div class="dish-price" id="precioEnsalada">Precio: S/25.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoEnsalada()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Platillo - Sopa Criolla -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalSopaCriolla').classList.remove('hidden')">
+  <img src="../imagenes/img13.jpeg" alt="Plato 13" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Sopa Criolla</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo13.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/19.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Sopa Criolla -->
+<div class="modal-overlay hidden" id="modalSopaCriolla">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalSopaCriolla').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoSopaCriollaLink">
+      <img src="../imagenes/logo13.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img13.jpeg" alt="Sopa Criolla">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Sopa Criolla</h2>
+      <p class="dish-description">Sopa tradicional peruana con carne, fideos, leche, huevo y especias. Reconfortante y sabrosa.</p>
+      <div class="dish-price" id="precioSopaCriolla">Precio: S/19.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.0 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoSopaCriolla()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 14 - Causa Limeña -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalCausaLimena').classList.remove('hidden')">
+  <img src="../imagenes/img14.jpeg" alt="Plato 14" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Causa Limeña</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo14.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/17.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">3.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Causa Limeña -->
+<div class="modal-overlay hidden" id="modalCausaLimena">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalCausaLimena').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoCausaLimenaLink">
+      <img src="../imagenes/logo14.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img14.jpeg" alt="Causa Limeña">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Causa Limeña</h2>
+      <p class="dish-description">Causa tradicional peruana hecha con papa amarilla, rellena de pollo o atún, acompañada de huevo y aceituna.</p>
+      <div class="dish-price" id="precioCausaLimena">Precio: S/17.50</div>
+      <div class="rating">
+        <span class="stars">★★★☆☆</span> <span>Calificación: 3.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoCausaLimena()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 15 - Papa Rellena -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalPapaRellena').classList.remove('hidden')">
+  <img src="../imagenes/img15.jpeg" alt="Plato 15" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Papa Rellena</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo15.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/12.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.3</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Papa Rellena -->
+<div class="modal-overlay hidden" id="modalPapaRellena">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalPapaRellena').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoPapaRellenaLink">
+      <img src="../imagenes/logo15.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img15.jpeg" alt="Papa Rellena">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Papa Rellena</h2>
+      <p class="dish-description">Papa rellena con carne molida, cebolla, huevo y especias, acompañada de salsa criolla.</p>
+      <div class="dish-price" id="precioPapaRellena">Precio: S/12.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.3 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoPapaRellena()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 16 - Tacu Tacu con Lomo -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalTacuTacu').classList.remove('hidden')">
+  <img src="../imagenes/img16.jpeg" alt="Plato 16" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Tacu Tacu con Lomo</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo16.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/28.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.7</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Tacu Tacu con Lomo -->
+<div class="modal-overlay hidden" id="modalTacuTacu">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalTacuTacu').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoTacuTacuLink">
+      <img src="../imagenes/logo16.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img16.jpeg" alt="Tacu Tacu con Lomo">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Tacu Tacu con Lomo</h2>
+      <p class="dish-description">Tradicional tacu tacu acompañado de jugoso lomo saltado y salsa criolla.</p>
+      <div class="dish-price" id="precioTacuTacu">Precio: S/28.00</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.7 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoTacuTacu()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 17 - Ocopa Arequipeña -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalOcopa').classList.remove('hidden')">
+  <img src="../imagenes/img17.jpeg" alt="Plato 17" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ocopa Arequipeña</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo17.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/15.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.2</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Ocopa Arequipeña -->
+<div class="modal-overlay hidden" id="modalOcopa">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalOcopa').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoOcopaLink">
+      <img src="../imagenes/logo17.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img17.jpeg" alt="Ocopa Arequipeña">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Ocopa Arequipeña</h2>
+      <p class="dish-description">Tradicional entrada de la gastronomía arequipeña con papas, salsa de ocopa y huevo duro.</p>
+      <div class="dish-price" id="precioOcopa">Precio: S/15.50</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.2 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoOcopa()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 18 - Ají de Gallina -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalAjiGallina').classList.remove('hidden')">
+  <img src="../imagenes/img18.jpeg" alt="Plato 18" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ají de Gallina</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo18.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/21.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.6</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Ají de Gallina -->
+<div class="modal-overlay hidden" id="modalAjiGallina">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalAjiGallina').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoAjiGallinaLink">
+      <img src="../imagenes/logo18.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img18.jpeg" alt="Ají de Gallina">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Ají de Gallina</h2>
+      <p class="dish-description">Clásico platillo peruano con pollo deshilachado en crema de ají amarillo, acompañado de arroz.</p>
+      <div class="dish-price" id="precioAjiGallina">Precio: S/21.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.6 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoAjiGallina()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 19 - Seco con Frejoles -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalSecoFrejoles').classList.remove('hidden')">
+  <img src="../imagenes/img19.jpeg" alt="Plato 19" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Seco con Frejoles</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo19.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/26.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">3.9</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Seco con Frejoles -->
+<div class="modal-overlay hidden" id="modalSecoFrejoles">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalSecoFrejoles').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoSecoFrejolesLink">
+      <img src="../imagenes/logo19.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img19.jpeg" alt="Seco con Frejoles">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Seco con Frejoles</h2>
+      <p class="dish-description">Tradicional guiso peruano acompañado con frejoles y arroz. Ideal para una comida abundante y sabrosa.</p>
+      <div class="dish-price" id="precioSecoFrejoles">Precio: S/26.50</div>
+      <div class="rating">
+        <span class="stars">★★★☆☆</span> <span>Calificación: 3.9 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoSecoFrejoles()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 20 - Chaufa Mixto -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalChaufaMixto').classList.remove('hidden')">
+  <img src="../imagenes/img20.jpeg" alt="Plato 20" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Chaufa Mixto</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo20.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/22.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.1</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Chaufa Mixto -->
+<div class="modal-overlay hidden" id="modalChaufaMixto">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalChaufaMixto').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoChaufaMixtoLink">
+      <img src="../imagenes/logo20.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img20.jpeg" alt="Chaufa Mixto">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Chaufa Mixto</h2>
+      <p class="dish-description">Arroz chaufa al estilo oriental con pollo, cerdo y huevo frito. ¡Un clásico delicioso!</p>
+      <div class="dish-price" id="precioChaufaMixto">Precio: S/22.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.1 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoChaufaMixto()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 21 - Ceviche Clásico -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalCevicheClasico').classList.remove('hidden')">
+  <img src="../imagenes/img21.jpeg" alt="Plato 21" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Ceviche Clásico</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo21.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/30.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">5.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Ceviche Clásico -->
+<div class="modal-overlay hidden" id="modalCevicheClasico">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalCevicheClasico').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoCevicheClasicoLink">
+      <img src="../imagenes/logo21.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img21.jpeg" alt="Ceviche Clásico">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Ceviche Clásico</h2>
+      <p class="dish-description">Fresco ceviche de pescado con limón, ají y cebolla, servido con camote y cancha.</p>
+      <div class="dish-price" id="precioCevicheClasico">Precio: S/30.00</div>
+      <div class="rating">
+        <span class="stars">★★★★★</span> <span>Calificación: 5.0 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoCevicheClasico()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 22 - Sancochado -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalSancochado').classList.remove('hidden')">
+  <img src="../imagenes/img22.jpeg" alt="Plato 22" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Sancochado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo22.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/24.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.4</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Sancochado -->
+<div class="modal-overlay hidden" id="modalSancochado">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalSancochado').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoSancochadoLink">
+      <img src="../imagenes/logo22.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img22.jpeg" alt="Sancochado">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Sancochado</h2>
+      <p class="dish-description">Tradicional caldo con carne, papas, yuca, zanahoria, col y garbanzos. Sabor casero.</p>
+      <div class="dish-price" id="precioSancochado">Precio: S/24.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.4 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoSancochado()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 23 - Pollo al Curry -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalPolloCurry').classList.remove('hidden')">
+  <img src="../imagenes/img23.jpeg" alt="Plato 23" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Pollo al Curry</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo23.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/27.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.2</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Pollo al Curry -->
+<div class="modal-overlay hidden" id="modalPolloCurry">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalPolloCurry').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoPolloCurryLink">
+      <img src="../imagenes/logo23.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img23.jpeg" alt="Pollo al Curry">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Pollo al Curry</h2>
+      <p class="dish-description">Pollo cocinado con especias orientales y salsa cremosa de curry. Acompañado con arroz.</p>
+      <div class="dish-price" id="precioPolloCurry">Precio: S/27.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.2 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoPolloCurry()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 24 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalArrozTapado').classList.remove('hidden')">
+  <img src="../imagenes/img24.jpeg" alt="Plato 24" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Arroz Tapado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo24.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/20.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">3.7</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Arroz Tapado -->
+<div class="modal-overlay hidden" id="modalArrozTapado">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalArrozTapado').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoArrozTapadoLink">
+      <img src="../imagenes/logo24.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img24.jpeg" alt="Arroz Tapado">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Arroz Tapado</h2>
+      <p class="dish-description">Tradicional plato peruano con carne sazonada entre capas de arroz. Acompañado con plátano frito y huevo.</p>
+      <div class="dish-price" id="precioArrozTapado">Precio: S/20.00</div>
+      <div class="rating">
+        <span class="stars">★★★☆☆</span> <span>Calificación: 3.7 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoArrozTapado()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 25 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalLasagnaCarne').classList.remove('hidden')">
+  <img src="../imagenes/img25.jpeg" alt="Plato 25" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Lasaña de Carne</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo25.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/29.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.8</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Lasaña de Carne -->
+<div class="modal-overlay hidden" id="modalLasagnaCarne">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalLasagnaCarne').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoLasagnaCarneLink">
+      <img src="../imagenes/logo25.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img25.jpeg" alt="Lasaña de Carne">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Lasaña de Carne</h2>
+      <p class="dish-description">Capas de pasta al horno con carne molida, salsa de tomate casera y queso gratinado.</p>
+      <div class="dish-price" id="precioLasagnaCarne">Precio: S/29.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.8 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoLasagnaCarne()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 26 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalAnticuchos').classList.remove('hidden')">
+  <img src="../imagenes/img26.jpeg" alt="Plato 26" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Anticuchos</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo26.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/18.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Anticuchos -->
+<div class="modal-overlay hidden" id="modalAnticuchos">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalAnticuchos').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoAnticuchosLink">
+      <img src="../imagenes/logo26.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img26.jpeg" alt="Anticuchos">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Anticuchos</h2>
+      <p class="dish-description">Brochetas tradicionales de corazón de res marinadas en ají panca y especias, acompañadas de papa y choclo.</p>
+      <div class="dish-price" id="precioAnticuchos">Precio: S/18.00</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.0 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoAnticuchos()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 27 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalFetuccini').classList.remove('hidden')">
+  <img src="../imagenes/img27.jpeg" alt="Plato 27" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Fetuccini Alfredo</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo27.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/23.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">3.8</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Fetuccini Alfredo -->
+<div class="modal-overlay hidden" id="modalFetuccini">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalFetuccini').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoFetucciniLink">
+      <img src="../imagenes/logo27.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img27.jpeg" alt="Fetuccini Alfredo">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Fetuccini Alfredo</h2>
+      <p class="dish-description">Pasta fetuccini en una cremosa salsa Alfredo a base de mantequilla, crema y queso parmesano. Ideal para los amantes de la comida italiana.</p>
+      <div class="dish-price" id="precioFetuccini">Precio: S/23.90</div>
+      <div class="rating">
+        <span class="stars">★★★☆☆</span> <span>Calificación: 3.8 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoFetuccini()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 28 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalCarapulcra').classList.remove('hidden')">
+  <img src="../imagenes/img28.jpeg" alt="Plato 28" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Carapulcra con Sopa Seca</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo28.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/19.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.4</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Carapulcra con Sopa Seca -->
+<div class="modal-overlay hidden" id="modalCarapulcra">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalCarapulcra').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoCarapulcraLink">
+      <img src="../imagenes/logo28.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img28.jpeg" alt="Carapulcra con Sopa Seca">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Carapulcra con Sopa Seca</h2>
+      <p class="dish-description">Tradicional combinación chinchana de carapulcra con papa seca y sopa seca con tallarines. Una joya de la gastronomía afroperuana.</p>
+      <div class="dish-price" id="precioCarapulcra">Precio: S/19.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.4 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoCarapulcra()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 29 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalArrozMariscos').classList.remove('hidden')">
+  <img src="../imagenes/img29.jpeg" alt="Plato 29" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Arroz con Mariscos</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo29.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/32.00</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">5.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Arroz con Mariscos -->
+<div class="modal-overlay hidden" id="modalArrozMariscos">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalArrozMariscos').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoArrozMariscosLink">
+      <img src="../imagenes/logo29.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img29.jpeg" alt="Arroz con Mariscos">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Arroz con Mariscos</h2>
+      <p class="dish-description">Sabroso arroz cocido con una mezcla de mariscos frescos, sazonado con ají amarillo, cebolla y especias peruanas. Un clásico marino.</p>
+      <div class="dish-price" id="precioArrozMariscos">Precio: S/32.00</div>
+      <div class="rating">
+        <span class="stars">★★★★★</span> <span>Calificación: 5.0 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoArrozMariscos()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Empresa 30 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalTallarinSaltado').classList.remove('hidden')">
+  <img src="../imagenes/img30.jpeg" alt="Plato 30" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Tallarín Saltado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo30.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/22.50</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.0</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Tallarín Saltado -->
+<div class="modal-overlay hidden" id="modalTallarinSaltado">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalTallarinSaltado').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoTallarinSaltadoLink">
+      <img src="../imagenes/logo30.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img30.jpeg" alt="Tallarín Saltado">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Tallarín Saltado</h2>
+      <p class="dish-description">Tallarines salteados al estilo peruano con carne, cebolla, tomate y un toque de sillao. Una fusión deliciosa y tradicional.</p>
+      <div class="dish-price" id="precioTallarinSaltado">Precio: S/22.50</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.0 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoTallarinSaltado()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 31 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalPescadoMacho').classList.remove('hidden')">
+  <img src="../imagenes/img31.jpeg" alt="Plato 31" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Pescado a lo Macho</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo31.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/36.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.5</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Pescado a lo Macho -->
+<div class="modal-overlay hidden" id="modalPescadoMacho">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalPescadoMacho').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoPescadoMachoLink">
+      <img src="../imagenes/logo31.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img31.jpeg" alt="Pescado a lo Macho">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Pescado a lo Macho</h2>
+      <p class="dish-description">Filete de pescado bañado en una salsa de mariscos con un toque picante. Acompañado de arroz blanco o yucas fritas.</p>
+      <div class="dish-price" id="precioPescadoMacho">Precio: S/36.90</div>
+      <div class="rating">
+        <span class="stars">★★★★☆</span> <span>Calificación: 4.5 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoPescadoMacho()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Empresa 32 -->
+<button class="card-platillo-boton" onclick="document.getElementById('modalLomoSaltado').classList.remove('hidden')">
+  <img src="../imagenes/img32.jpeg" alt="Plato 32" class="imagen-platillo">
+  <div class="info-platillo">
+    <h2 class="nombre-platillo">Lomo Saltado</h2>
+    <div class="restaurante-info">
+      <img src="../imagenes/logo32.png" alt="Logo Restaurante" class="logo-restaurante">
+      <span class="precio-platillo">S/29.90</span>
+    </div>
+    <div class="rating-platillo">
+      <img src="../imagenes/estrella.png" class="estrella-icono">
+      <span class="promedio">4.9</span>
+    </div>
+    <div class="agregar-carrito-falso">Ver detalles</div>
+  </div>
+</button>
+
+<!-- Modal - Lomo Saltado -->
+<div class="modal-overlay hidden" id="modalLomoSaltado">
+  <div class="modal">
+    <button class="close-btn" onclick="document.getElementById('modalLomoSaltado').classList.add('hidden')">&times;</button>
+
+    <a href="#" id="logoLomoSaltadoLink">
+      <img src="../imagenes/logo32.png" alt="Logo Restaurante" class="logo-restaurante">
+    </a>
+
+    <div class="dish-image">
+      <img src="../imagenes/img32.jpeg" alt="Lomo Saltado">
+    </div>
+
+    <div class="modal-body">
+      <h2 class="dish-name">Lomo Saltado</h2>
+      <p class="dish-description">Tradicional plato peruano de tiras de carne salteadas con cebolla, tomate y papas fritas. Servido con arroz blanco.</p>
+      <div class="dish-price" id="precioLomoSaltado">Precio: S/29.90</div>
+      <div class="rating">
+        <span class="stars">★★★★★</span> <span>Calificación: 4.9 estrellas</span>
+      </div>
+      <button onclick="agregarAlCarritoLomoSaltado()">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+</div>
+
+
+
+<!--Agregar un texto para los partners-->
+<!--Click para entrar al partner-->
+<div class="unete-sazonapp">
+  <a href="../html/registropartner.html" style="color: inherit; text-decoration: none;">Únete a SAZONAPP!</a>
+</div>
+  </main>
+
+<a href="https://wa.me/+51922401362" target="_blank" class="whatsapp-float">
+  <img src="../imagenes/whatsapp.png" alt="WhatsApp" />
+</a>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/indesscript.js" defer></script>
+  <footer>
+  <div class="footer-text">
+  © 2025 SazonAPP Inc. All rights reserved.
+</div>
+   </body>
+</html>

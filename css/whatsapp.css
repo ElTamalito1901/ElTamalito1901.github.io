@@ -1,0 +1,25 @@
+ /*Logo WP flotando - INICIO*/
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;    /* distancia desde abajo */
+  right: 20px;      /* distancia desde la izquierda */
+  width: 60px;     /* tamaño de la imagen */
+  height: 60px;
+  z-index: 10000;  /* para que quede encima de todo */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float img {
+  width: 75px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Opcional: efecto hover */
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/*Logo WP flotando - FIN*/

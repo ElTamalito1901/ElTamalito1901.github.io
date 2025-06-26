@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery App</title>
+    <link rel="stylesheet" href="../css/pago.css">
+</head>
+<body>
+    <div class="container">
+        <div class="panel left">
+            <div class="header">
+                <div class="logo">🍕</div>
+                <h1>Delivery</h1>
+            </div>
+            
+            <h2>Dirección de entrega</h2>
+            <input class="input" value="Ur. Los morales Mi Casa 13 - Callao" placeholder="Ingresa dirección">
+            <div class="suggestion">🏠 Casa seleccionada</div>
+            <div class="suggestion">📍 Envío inmediato</div>
+            
+            <h2>Productos</h2>
+            <div class="product">
+                <div class="product-img">POLLO CIBAO</div>
+                <div class="product-info">
+                    <h3>POLLO CIBAO - DELUXE</h3>
+                    <p>Entrega inmediata</p>
+                    <p>⏱️ 15 - 20 min</p>
+                </div>
+            </div>
+            
+            <h2>Método de pago</h2>
+            <div class="payment" id="creditCardOption">
+                <div class="dot"></div>
+                <span>Tarjeta Crédito/Débito</span>
+            </div>
+            <div class="payment" id="cashOption">
+                <div class="dot"></div>
+                <span>Efectivo</span>
+            </div>
+        </div>
+
+        <div class="panel right">
+            <h2>Resumen</h2>
+            <div class="summary">
+                <div class="row"><span>Costo de productos</span><span>S/29.90</span></div>
+                <div class="row"><span>Costo de envío</span><span>S/1.10</span></div>
+                <div class="row total"><span>Total</span><span>S/31.00</span></div>
+            </div>
+            
+            <button class="btn" onclick="alert('¡Pedido realizado!')">Hacer pedido</button>
+        </div>
+    </div>
+
+    <!-- Modal de Pago -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">💳 Pago con Tarjeta</div>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+
+            <div class="modal-section">
+                <h3>Datos de la Tarjeta</h3>
+                
+                <div class="form-group">
+                    <label>Número de la tarjeta</label>
+                    <input class="input" placeholder="1234 5678 9012 3456" id="modalCardNum">
+                </div>
+                
+                <div class="form-group">
+                    <label>Nombre del titular</label>
+                    <input class="input" placeholder="Juan Pérez" id="modalCardName">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de expiración</label>
+                        <input class="input" placeholder="MM/AA" id="modalExpiry">
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input class="input" placeholder="123" id="modalCvv">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <input class="input" type="email" placeholder="correo@ejemplo.com" id="modalEmail">
+                </div>
+            </div>
+
+            <button class="btn" onclick="processPayment()">Procesar Pago - S/31.00</button>
+            <button class="btn" style="background: #6c757d;" onclick="closeModal()">Cancelar</button>
+        </div>
+    </div>
+
+<script src="../js/pago.js"></script>
+</body>
+</html>
