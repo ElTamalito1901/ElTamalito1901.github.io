@@ -1,4 +1,8 @@
-        // Función para abrir el modal
+  function goBack() {
+          window.history.back();
+        }
+
+ // Función para abrir el modal
         function openModal() {
             document.getElementById('paymentModal').classList.add('active');
             document.body.style.overflow = 'hidden'; // Evitar scroll del body

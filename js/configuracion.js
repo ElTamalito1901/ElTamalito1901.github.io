@@ -1,9 +1,9 @@
           function goBack() {
-          window.location.href = "../html/index.html";
+          window.history.back();
         }
 
         function testVoice() {
-            const voiceEnabled = document.getElementById('voiceReading').checked;
+            const voiceEnabled = document.getElementById('voiceReading').chescked;
             const voiceType = document.getElementById('voiceType').value;
             const voiceSpeed = document.getElementById('voiceSpeed').value;
             

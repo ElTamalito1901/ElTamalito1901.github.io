@@ -1,3 +1,6 @@
+  function goBack() {
+          window.history.back();
+        }
 document.getElementById('registroForm').addEventListener('submit', function(e) {
   e.preventDefault(); // Evita el envío real del formulario
 

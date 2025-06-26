@@ -15,7 +15,7 @@ document.getElementById("formLogin").addEventListener("submit", function(event) 
     localStorage.setItem("correoUsuario", usuario.correo);
 
     // Redirigir al inicio
-    window.location.href = "../html/index.html";
+    window.location.href = "../index.html";
   } else {
     alert("Correo o contraseña incorrectos");
   }

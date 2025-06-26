@@ -1,4 +1,6 @@
-
+function goBack() {
+window.history.back();
+}
 
 function irACarta(elemento) {
   const nombre = elemento.getAttribute("data-nombre");
@@ -11,8 +13,6 @@ function irACarta(elemento) {
 
   window.location.href = "../html/cartarestaurante.html";
 }
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);

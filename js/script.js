@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
       btnIngresar.href = "#";
       btnIngresar.onclick = function () {
         localStorage.removeItem("usuarioLogueado");
-        window.location.href = "../html/index.html";
+        window.location.href = "index.html";
       };
 
       if (opcionPerfil) opcionPerfil.style.display = "block"; // Mostrar perfil si está logueado

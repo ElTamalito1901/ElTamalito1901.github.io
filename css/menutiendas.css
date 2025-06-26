@@ -252,6 +252,7 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-top: 100px;
   margin-left: -120px;
+  cursor: pointer;
 }
 
 .boton-volver:hover {
@@ -267,3 +268,37 @@
   }
 }
 
+ .volver {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background: rgba(250, 97, 40, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fa6128;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+
+  /* Añade esto */
+  border: none;
+  outline: none;
+}
+
+.volver:hover {
+  background: rgba(250, 97, 40, 0.2);
+  transform: translateX(-3px);
+}
+
+/* Opcional: estilo de foco accesible */
+.volver:focus {
+  outline: 2px solid rgba(250, 97, 40, 0.5);
+  outline-offset: 2px;
+}

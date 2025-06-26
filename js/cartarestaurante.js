@@ -1,3 +1,7 @@
+function goBack() {
+window.history.back();
+}
+
 function openMenu() {
   document.querySelector(".sidebar").style.display = "block";
 }
@@ -12,7 +16,7 @@ function toggleMenu() {
 }
 
 function irAInicio() {
-  window.location.href = "../html/index.html";
+  window.location.href = "../index.html";
 }
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,8 +1,8 @@
 // Proteger acceso: redirigir si no está logueado
 if (localStorage.getItem("usuarioLogueado") !== "true") {
-  window.location.href = "../html/login.html";
+  window.location.href = "login.html";
 }
-
+s
 let userData = null; // Variable global
 
 // Obtener usuario desde localStorage
@@ -136,7 +136,7 @@ document.getElementById('editModal').addEventListener('click', function(e) {
 
 // Botones ayuda
 function goBack() {
-    window.location.href = "../html/index.html";
+    window.history.back();
 }
 function contactSupport() {
     window.open("https://wa.me/+51922401362", "_blank");

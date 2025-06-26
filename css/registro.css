@@ -244,30 +244,40 @@
     }
 
     /* Flecha volver mejorada */
-    .volver {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 45px;
-      height: 45px;
-      background: rgba(250, 97, 40, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: #fa6128;
-      font-size: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
+ .volver {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background: rgba(250, 97, 40, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #fa6128;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 
-    .volver:hover {
-      background: rgba(250, 97, 40, 0.2);
-      transform: translateX(-3px);
-    }
+  /* Añade esto */
+  border: none;
+  outline: none;
+}
+
+.volver:hover {
+  background: rgba(250, 97, 40, 0.2);
+  transform: translateX(-3px);
+}
+
+/* Opcional: estilo de foco accesible */
+.volver:focus {
+  outline: 2px solid rgba(250, 97, 40, 0.5);
+  outline-offset: 2px;
+}
 
     /* Texto para iniciar sesión */
     .login-opcion {
